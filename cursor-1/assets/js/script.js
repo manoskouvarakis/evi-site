@@ -9,31 +9,48 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Mobile menu functionality
-const nav = document.querySelector('nav');
-const menuBtn = document.createElement('button');
-menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-menuBtn.classList.add('menu-btn');
-nav.appendChild(menuBtn);
-
+const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
+const lines = document.querySelectorAll('.line');
 
-menuBtn.addEventListener('click', () => {
-    navLinks.classList.toggle('show');
+hamburger.addEventListener('click', () => {
+    // Toggle hamburger animation
+    hamburger.classList.toggle('active');
+    
+    // Toggle menu visibility
+    navLinks.classList.toggle('active');
+    
+    // Prevent body scroll when menu is open
+    document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
 });
 
-// Close mobile menu when clicking outside
+// Close menu when clicking on a link
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+});
+
+// Close menu when clicking outside
 document.addEventListener('click', (e) => {
-    if (!nav.contains(e.target)) {
-        navLinks.classList.remove('show');
+    if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+        document.body.style.overflow = '';
     }
 });
 
 // Add scroll event listener for header
 window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
     if (window.scrollY > 50) {
-        nav.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+        header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+        header.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
     } else {
-        nav.style.backgroundColor = '#fff';
+        header.style.backgroundColor = '#fff';
+        header.style.boxShadow = 'none';
     }
 });
 
@@ -53,25 +70,4 @@ serviceCards.forEach(card => {
     card.style.transform = 'translateY(20px)';
     card.style.transition = 'all 0.5s ease';
     observer.observe(card);
-});
-
-// Hamburger Menu
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
-const lines = document.querySelectorAll('.line');
-
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navLinks.classList.toggle('active');
-});
-
-// Close menu when clicking on a link
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navLinks.classList.remove('active');
-        lines.forEach(line => {
-            line.classList.remove('active');
-        });
-    });
 }); 
