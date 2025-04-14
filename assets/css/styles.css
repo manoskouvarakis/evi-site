@@ -46,7 +46,7 @@ nav {
 }
 
 .logo-icon {
-    background-color: #2bb78e;
+    background-color: #439d9e;
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -102,7 +102,7 @@ nav {
 }
 
 .nav-links a:hover {
-    color: #2bb78e;
+    color: #439d9e;
 }
 
 /* Hamburger Menu */
@@ -283,9 +283,9 @@ nav {
 }
 
 .btn-primary {
-    background-color: #2bb78e;
+    background-color: #439d9e;
     color: white;
-    border: 2px solid #2bb78e;
+    border: 2px solid #439d9e;
 }
 
 .btn-primary:hover {
@@ -301,7 +301,7 @@ nav {
 
 .btn-secondary:hover {
     background-color: white;
-    color: #2bb78e;
+    color: #439d9e;
 }
 
 @media (max-width: 768px) {
@@ -415,7 +415,7 @@ section h2 {
 
 .service-card i {
     font-size: 2.5rem;
-    color: #2bb78e;
+    color: #439d9e;
     margin-bottom: 1.5rem;
     transition: color 0.3s ease;
 }
@@ -443,12 +443,12 @@ section h2 {
     transform: translateX(-50%);
     width: 0;
     height: 2px;
-    background: #2bb78e;
+    background: #439d9e;
     transition: width 0.3s ease;
 }
 
 .service-card:hover h3 {
-    color: #2bb78e;
+    color: #439d9e;
 }
 
 .service-card:hover h3::after {
@@ -510,7 +510,7 @@ section h2 {
 
 .info-card i {
     font-size: 2.5rem;
-    color: #2bb78e;
+    color: #439d9e;
     margin-bottom: 1rem;
     transition: color 0.3s ease;
 }
@@ -591,12 +591,12 @@ section h2 {
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
-    color: #2bb78e;
+    color: #439d9e;
 }
 
 /* Footer */
 footer {
-    background-color: #2bb78e;
+    background-color: #439d9e;
     color: white;
     padding: 3rem 5%;
 }
@@ -789,7 +789,7 @@ section {
 
 .info-card i {
     font-size: 2.5rem;
-    color: #2bb78e;
+    color: #439d9e;
     margin-bottom: 1rem;
 }
 
