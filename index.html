@@ -86,15 +86,31 @@
             <h2>Το Ιατρείο</h2>
             <div class="office-content">
                 <p>Το ιατρείο βρίσκεται στην οδό Κερκύρας 14 στα Γλυκά Νερά και διαθέτει εύκολη πρόσβαση από την Αττική Οδό και τη Λεωφόρο Μεσογείων.</p>
-                <div class="office-gallery">
-                    <div class="gallery-item">
-                        <img src="assets/images/office-1.jpg" alt="Ιατρείο - Εξωτερική όψη">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/images/office-2.jpg" alt="Ιατρείο - Αίθουσα αναμονής">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/images/office-3.jpg" alt="Ιατρείο - Εξεταστήριο">
+                <div class="office-carousel">
+                    <div class="carousel-container">
+                        <div class="carousel-track">
+                            <div class="carousel-slide">
+                                <img src="assets/images/office-1.jpg" alt="Το ιατρείο μας - Άποψη 1" loading="lazy">
+                                <div class="slide-caption">Άνετο περιβάλλον αναμονής</div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="assets/images/office-2.jpg" alt="Το ιατρείο μας - Άποψη 2" loading="lazy">
+                                <div class="slide-caption">Σύγχρονος εξοπλισμός</div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="assets/images/office-3.jpg" alt="Το ιατρείο μας - Άποψη 3" loading="lazy">
+                                <div class="slide-caption">Χώρος εξέτασης</div>
+                            </div>
+                        </div>
+                        
+                        <button class="carousel-button prev" aria-label="Προηγούμενη εικόνα">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-button next" aria-label="Επόμενη εικόνα">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        
+                        <div class="carousel-dots"></div>
                     </div>
                 </div>
             </div>
@@ -157,8 +173,11 @@
     <footer>
         <div class="footer-content">
             <div class="footer-map">
-                <h3>Βρείτε μας</h3>
                 <div class="map-container">
+                    <div class="map-loading">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Φόρτωση χάρτη...</span>
+                    </div>
                     <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.937652876153!2d23.85093557714602!3d38.00191469904146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a199814cc0e34f%3A0xa516de5ad61f3008!2zzprOrc-BzrrPhc-BzrHPgiAxNCwgzpPOu8-FzrrOrCDOnc61z4HOrCAxNTMgNTQ!5e0!3m2!1sel!2sgr!4v1744633974739!5m2!1sel!2sgr" 
                         width="100%" 
@@ -166,26 +185,178 @@
                         style="border:0;" 
                         allowfullscreen="" 
                         loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
+                        referrerpolicy="no-referrer-when-downgrade"
+                        onload="this.parentElement.classList.add('loaded')">
                     </iframe>
                 </div>
             </div>
-            <div class="working-hours">
-                <h3>Ώρες Λειτουργίας</h3>
-                <div class="hours-content">
-                    <p>Δευτέρα: 09:00-14:00 & 17:30-21:00</p>
-                    <p>Τρίτη: 09:00-14:00 & 17:30-21:00</p>
-                    <p>Τετάρτη: 09:00-14:00</p>
-                    <p>Πέμπτη: 09:00-14:00 & 17:30-21:00</p>
-                    <p>Παρασκευή: 09:00-14:00 & 17:30-21:00</p>
-                    <p>Σάββατο: Κλειστά</p>
-                    <p>Κυριακή: Κλειστά</p>
+            <div class="footer-right">
+                <div class="social-links">
+                    <a href="https://www.facebook.com/paidiatros.kosti" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/paidiatros.kosti" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
                 </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; Εύη Κωστή - Παιδίατρος/Νεογνολόγος</p>
+                <div class="copyright">
+                    <p>&copy; Εύη Κωστή - Παιδίατρος/Νεογνολόγος</p>
+                </div>
             </div>
         </div>
     </footer>
+
+    <!-- Update schema markup to remove opening hours -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MedicalBusiness",
+        "name": "Εύη Κωστή - Παιδίατρος/Νεογνολόγος",
+        "image": "https://paidiatros-kosti.gr/assets/images/doctor-image.jpg",
+        "description": "Εξειδικευμένη παιδίατρος και νεογνολόγος με εμπειρία στη φροντίδα παιδιών.",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Κερκύρας 14",
+            "addressLocality": "Γλυκά Νερά",
+            "postalCode": "15354",
+            "addressCountry": "GR"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "38.00191469904146",
+            "longitude": "23.85093557714602"
+        },
+        "url": "https://paidiatros-kosti.gr",
+        "telephone": "+306974554167",
+        "email": "paidiatros-kosti@gmail.com",
+        "sameAs": [
+            "https://www.facebook.com/paidiatros.kosti",
+            "https://www.instagram.com/paidiatros.kosti"
+        ],
+        "priceRange": "€€",
+        "medicalSpecialty": ["Pediatrics", "Neonatology"],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Medical Services",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "MedicalTherapy",
+                        "name": "Παιδιατρική Φροντίδα"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "MedicalTherapy",
+                        "name": "Νεογνική Φροντίδα"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "MedicalTherapy",
+                        "name": "Παρακολούθηση Ανάπτυξης"
+                    }
+                }
+            ]
+        }
+    }
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const track = document.querySelector('.carousel-track');
+            const slides = Array.from(track.children);
+            const nextButton = document.querySelector('.carousel-button.next');
+            const prevButton = document.querySelector('.carousel-button.prev');
+            const dotsContainer = document.querySelector('.carousel-dots');
+            
+            const slideWidth = slides[0].getBoundingClientRect().width;
+            let currentIndex = 0;
+            
+            // Create dots
+            slides.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.classList.add('carousel-dot');
+                dot.setAttribute('aria-label', `Μετάβαση στην εικόνα ${index + 1}`);
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(index));
+                dotsContainer.appendChild(dot);
+            });
+            
+            const dots = Array.from(dotsContainer.children);
+            
+            // Arrange slides next to each other
+            slides.forEach((slide, index) => {
+                slide.style.left = slideWidth * index + 'px';
+            });
+            
+            function updateDots() {
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+            }
+            
+            function goToSlide(index) {
+                track.style.transform = `translateX(-${slideWidth * index}px)`;
+                currentIndex = index;
+                updateDots();
+            }
+            
+            nextButton.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                goToSlide(currentIndex);
+            });
+            
+            prevButton.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                goToSlide(currentIndex);
+            });
+            
+            // Auto-play
+            let autoplayInterval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                goToSlide(currentIndex);
+            }, 5000);
+            
+            // Pause autoplay on hover
+            const carousel = document.querySelector('.carousel-container');
+            carousel.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
+            carousel.addEventListener('mouseleave', () => {
+                autoplayInterval = setInterval(() => {
+                    currentIndex = (currentIndex + 1) % slides.length;
+                    goToSlide(currentIndex);
+                }, 5000);
+            });
+            
+            // Touch support for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            track.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+            
+            track.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+            
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                if (touchEndX < touchStartX - swipeThreshold) {
+                    // Swipe left
+                    currentIndex = (currentIndex + 1) % slides.length;
+                    goToSlide(currentIndex);
+                } else if (touchEndX > touchStartX + swipeThreshold) {
+                    // Swipe right
+                    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                    goToSlide(currentIndex);
+                }
+            }
+        });
+    </script>
 </body>
 </html> 
