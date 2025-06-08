@@ -938,6 +938,11 @@ section {
     display: block;
 }
 
+.carousel-slide:first-child img {
+    object-fit: contain;
+    background-color: #f8f9fa;
+}
+
 .carousel-button {
     position: absolute;
     top: 50%;
@@ -1025,6 +1030,11 @@ section {
     .carousel-dot {
         width: 8px;
         height: 8px;
+    }
+
+    .carousel-slide:first-child img {
+        object-fit: contain;
+        background-color: #f8f9fa;
     }
 }
 
