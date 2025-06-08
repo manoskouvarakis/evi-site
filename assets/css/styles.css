@@ -39,28 +39,27 @@ nav {
 }
 
 /* Logo Styles */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
 .logo-container {
     display: flex;
     align-items: center;
     gap: 1rem;
-}
-
-.logo-icon {
-    background-color: #439d9e;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.5rem;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-decoration: none;
     transition: transform 0.3s ease;
 }
 
-.logo-icon:hover {
-    transform: scale(1.05);
+.logo-container:hover {
+    transform: scale(1.02);
+}
+
+.logo-icon {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
 }
 
 .logo-text {
@@ -180,9 +179,8 @@ nav {
     }
 
     .logo-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
+        width: 50px;
+        height: 50px;
     }
 
     .logo-text h1 {
