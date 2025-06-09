@@ -152,14 +152,14 @@
                         <i class="fas fa-phone"></i>
                         <div class="info-card-content">
                             <h3>Τηλέφωνο</h3>
-                            <p>697 45 54 167</p>
+                            <p class="contact-protected" data-contact="697 45 54 167">697 45 54 167</p>
                         </div>
                     </div>
-                    <div class="info-card email-item" onclick="window.location.href='mailto:paidiatros-kosti@gmail.com'">
+                    <div class="info-card email-item" onclick="openEmail()">
                         <i class="fas fa-envelope"></i>
                         <div class="info-card-content">
                             <h3>Email</h3>
-                            <p>paidiatros.kosti@gmail.com</p>
+                            <p class="contact-protected" data-contact="paidiatros.kosti@gmail.com">paidiatros.kosti@gmail.com</p>
                         </div>
                     </div>
                     <div class="info-card address-item" onclick="window.open('https://maps.app.goo.gl/qCTwsSoVepLE9kh69', '_blank')">
@@ -232,7 +232,7 @@
         },
         "url": "https://paidiatros-kosti.gr",
         "telephone": "+306974554167",
-        "email": "paidiatros-kosti@gmail.com",
+        "email": "paidiatros.kosti@gmail.com",
         "sameAs": [
             "https://www.facebook.com/paidiatros.kosti",
             "https://www.instagram.com/paidiatros.kosti"
@@ -270,95 +270,137 @@
     </script>
 
     <script>
+        // SEO-friendly contact protection
+        function enhanceContactProtection() {
+            const protectedElements = document.querySelectorAll('.contact-protected');
+            
+            protectedElements.forEach(element => {
+                // Add click protection
+                element.addEventListener('contextmenu', (e) => e.preventDefault());
+                
+                // Add copy protection
+                element.addEventListener('copy', (e) => {
+                    e.preventDefault();
+                    return false;
+                });
+                
+                // Add visual feedback
+                element.addEventListener('click', function() {
+                    this.style.transform = 'scale(1.05)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 200);
+                });
+            });
+        }
+        
+        function openEmail() {
+            const email = 'paidiatros.kosti@gmail.com';
+            window.location.href = 'mailto:' + email;
+        }
+        
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+        let autoplayInterval;
+        
+        function showSlide(n) {
+            slides.forEach(slide => slide.style.transform = `translateX(${n * 100}%)`);
+            dots.forEach(dot => dot.classList.remove('active'));
+            if (dots[n]) dots[n].classList.add('active');
+            currentSlide = n;
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+        
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+        
+        function startAutoplay() {
+            autoplayInterval = setInterval(nextSlide, 5000);
+        }
+        
+        function stopAutoplay() {
+            clearInterval(autoplayInterval);
+        }
+        
+        // Initialize everything
         document.addEventListener('DOMContentLoaded', function() {
-            const track = document.querySelector('.carousel-track');
-            const slides = Array.from(track.children);
-            const nextButton = document.querySelector('.carousel-button.next');
-            const prevButton = document.querySelector('.carousel-button.prev');
-            const dotsContainer = document.querySelector('.carousel-dots');
+            // Initialize contact protection
+            enhanceContactProtection();
             
-            const slideWidth = slides[0].getBoundingClientRect().width;
-            let currentIndex = 0;
-            
-            // Create dots
-            slides.forEach((_, index) => {
-                const dot = document.createElement('button');
-                dot.classList.add('carousel-dot');
-                dot.setAttribute('aria-label', `Μετάβαση στην εικόνα ${index + 1}`);
-                if (index === 0) dot.classList.add('active');
-                dot.addEventListener('click', () => goToSlide(index));
-                dotsContainer.appendChild(dot);
-            });
-            
-            const dots = Array.from(dotsContainer.children);
-            
-            // Arrange slides next to each other
-            slides.forEach((slide, index) => {
-                slide.style.left = slideWidth * index + 'px';
-            });
-            
-            function updateDots() {
+            // Initialize carousel
+            if (slides.length > 0) {
+                showSlide(0);
+                startAutoplay();
+                
+                // Add event listeners
+                document.querySelector('.carousel-button.prev').addEventListener('click', () => {
+                    prevSlide();
+                    stopAutoplay();
+                    startAutoplay();
+                });
+                
+                document.querySelector('.carousel-button.next').addEventListener('click', () => {
+                    nextSlide();
+                    stopAutoplay();
+                    startAutoplay();
+                });
+                
+                // Add dot navigation
                 dots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === currentIndex);
+                    dot.addEventListener('click', () => {
+                        showSlide(index);
+                        stopAutoplay();
+                        startAutoplay();
+                    });
+                });
+                
+                // Pause autoplay on hover
+                document.querySelector('.carousel-container').addEventListener('mouseenter', stopAutoplay);
+                document.querySelector('.carousel-container').addEventListener('mouseleave', startAutoplay);
+                
+                // Touch support for mobile
+                let startX = 0;
+                let endX = 0;
+                
+                document.querySelector('.carousel-container').addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                });
+                
+                document.querySelector('.carousel-container').addEventListener('touchend', (e) => {
+                    endX = e.changedTouches[0].clientX;
+                    if (startX - endX > 50) {
+                        nextSlide();
+                    } else if (endX - startX > 50) {
+                        prevSlide();
+                    }
                 });
             }
             
-            function goToSlide(index) {
-                track.style.transform = `translateX(-${slideWidth * index}px)`;
-                currentIndex = index;
-                updateDots();
-            }
+            // Mobile menu functionality
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
             
-            nextButton.addEventListener('click', () => {
-                currentIndex = (currentIndex + 1) % slides.length;
-                goToSlide(currentIndex);
-            });
-            
-            prevButton.addEventListener('click', () => {
-                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-                goToSlide(currentIndex);
-            });
-            
-            // Auto-play
-            let autoplayInterval = setInterval(() => {
-                currentIndex = (currentIndex + 1) % slides.length;
-                goToSlide(currentIndex);
-            }, 5000);
-            
-            // Pause autoplay on hover
-            const carousel = document.querySelector('.carousel-container');
-            carousel.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
-            carousel.addEventListener('mouseleave', () => {
-                autoplayInterval = setInterval(() => {
-                    currentIndex = (currentIndex + 1) % slides.length;
-                    goToSlide(currentIndex);
-                }, 5000);
-            });
-            
-            // Touch support for mobile
-            let touchStartX = 0;
-            let touchEndX = 0;
-            
-            track.addEventListener('touchstart', e => {
-                touchStartX = e.changedTouches[0].screenX;
-            }, { passive: true });
-            
-            track.addEventListener('touchend', e => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            }, { passive: true });
-            
-            function handleSwipe() {
-                const swipeThreshold = 50;
-                if (touchEndX < touchStartX - swipeThreshold) {
-                    // Swipe left
-                    currentIndex = (currentIndex + 1) % slides.length;
-                    goToSlide(currentIndex);
-                } else if (touchEndX > touchStartX + swipeThreshold) {
-                    // Swipe right
-                    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-                    goToSlide(currentIndex);
-                }
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('active');
+                    navLinks.classList.toggle('active');
+                });
+                
+                // Close menu when clicking on a link
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        hamburger.classList.remove('active');
+                        navLinks.classList.remove('active');
+                    });
+                });
             }
         });
     </script>

@@ -582,6 +582,76 @@ section h2 {
     cursor: pointer;
 }
 
+/* SEO-Friendly Contact Protection */
+.contact-protected {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    /* Make it harder for bots to parse */
+    font-family: 'Arial', sans-serif;
+    direction: ltr;
+    unicode-bidi: bidi-override;
+}
+
+.contact-protected:hover {
+    color: #439d9e;
+    text-decoration: underline;
+    text-decoration-color: #439d9e;
+    text-decoration-thickness: 2px;
+}
+
+/* Prevent right-click context menu */
+.contact-protected {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Additional protection for email */
+.email-item .contact-protected {
+    font-style: italic;
+}
+
+.email-item .contact-protected:hover {
+    font-style: normal;
+    font-weight: 600;
+}
+
+/* Add subtle visual protection */
+.contact-protected::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Fallback for screen readers */
+@media (prefers-reduced-motion: reduce) {
+    .contact-protected {
+        transition: none;
+    }
+}
+
+/* Ensure accessibility */
+.contact-protected:focus {
+    outline: 2px solid #439d9e;
+    outline-offset: 2px;
+}
+
 /* Responsive Design for Services and Contact */
 @media (max-width: 768px) {
     .services-grid, .contact-info {
