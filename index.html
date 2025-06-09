@@ -157,7 +157,7 @@
             <h2>Επικοινωνία & Ραντεβού</h2>
             <div class="contact-content">
                 <div class="contact-info">
-                    <div class="info-card">
+                    <div class="info-card" onclick="openPhone()">
                         <i class="fas fa-phone"></i>
                         <div class="info-card-content">
                             <h3>Τηλέφωνο</h3>
@@ -306,6 +306,11 @@
         function openEmail() {
             const email = 'paidiatros.kosti@gmail.com';
             window.location.href = 'mailto:' + email;
+        }
+        
+        function openPhone() {
+            const phone = '6974554167';
+            window.location.href = 'tel:' + phone;
         }
         
         // Carousel functionality
