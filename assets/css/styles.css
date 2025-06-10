@@ -134,44 +134,67 @@ nav {
 /* Mobile Navigation */
 @media (max-width: 768px) {
     .hamburger {
-        display: block;
+        display: block !important;
         z-index: 1001;
+        position: relative;
     }
 
-    .nav-links {
-        position: fixed;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        background-color: #fff;
-        flex-direction: column;
-        align-items: center;
-        padding: 2rem 0;
-        transform: translateY(-150%);
-        transition: transform 0.5s ease;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        z-index: 1000;
+    /* Completely override desktop nav-links styles for mobile */
+    nav .nav-links {
+        display: none !important;
+        position: fixed !important;
+        top: 60px !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        background-color: #fff !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding: 2rem 0 !important;
+        transform: translateY(-100vh) !important;
+        transition: transform 0.3s ease !important;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
+        z-index: 1000 !important;
+        height: auto !important;
+        min-height: 200px !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        margin: 0 !important;
+        list-style: none !important;
+        gap: 0 !important;
     }
 
-    .nav-links.active {
-        transform: translateY(0);
+    nav .nav-links.active {
+        display: flex !important;
+        transform: translateY(0) !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
 
-    .nav-links li {
-        margin: 1rem 0;
+    nav .nav-links li {
+        margin: 1rem 0 !important;
+        padding: 0 !important;
         opacity: 0;
         transform: translateY(-20px);
         transition: all 0.3s ease;
+        width: 100% !important;
+        text-align: center !important;
     }
 
-    .nav-links.active li {
+    nav .nav-links.active li {
         opacity: 1;
         transform: translateY(0);
-        transition: all 0.3s ease 0.2s;
+        transition: all 0.3s ease 0.1s;
     }
 
-    .nav-links a {
-        font-size: 1.2rem;
+    nav .nav-links a {
+        font-size: 1.2rem !important;
+        display: block !important;
+        padding: 0.5rem 1rem !important;
+        width: 100% !important;
+        color: #333 !important;
+        text-decoration: none !important;
     }
 
     .logo-container {
