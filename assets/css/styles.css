@@ -218,7 +218,7 @@ nav {
 /* Nitro Hero Section */
 .nitro-hero {
     min-height: 100vh;
-    background: url('../images/hero-2.jpg') no-repeat center center;
+    background: url('../images/hero-2.webp') no-repeat center center;
     background-size: cover;
     position: relative;
     display: flex;
@@ -230,6 +230,13 @@ nav {
     padding: 0;
     margin-left: 0;
     margin-right: 0;
+}
+
+/* Fallback for browsers that don't support WebP */
+@supports not (background-image: url('../images/hero-2.webp')) {
+    .nitro-hero {
+        background-image: url('../images/hero-2.jpg');
+    }
 }
 
 .hero-overlay {
