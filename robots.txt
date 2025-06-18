@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /assets/
 
-Sitemap: https://paidiatros-kosti.gr/sitemap.xml 
+Sitemap: https://www.paidiatros-kosti.gr/sitemap.xml 
