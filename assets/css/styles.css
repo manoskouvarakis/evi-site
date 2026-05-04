@@ -321,9 +321,9 @@ nav {
 }
 
 .btn-primary {
-    background-color: #4A9F9D;
+    background-color: #2D8280;
     color: var(--color-white);
-    border-color: #4A9F9D;
+    border-color: #2D8280;
 }
 
 .btn-primary:hover {
