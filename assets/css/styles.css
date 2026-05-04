@@ -8,7 +8,7 @@
     --color-accent-pink: #F9B3BC;
     --color-accent-lav: #D4B8E0;
     --color-text: #2D3748;
-    --color-text-muted: #718096;
+    --color-text-muted: #5A6578;
     --color-white: #FFFFFF;
     --color-footer-bg: #2D5F5D;
 
@@ -321,9 +321,9 @@ nav {
 }
 
 .btn-primary {
-    background-color: var(--color-brand);
+    background-color: #4A9F9D;
     color: var(--color-white);
-    border-color: var(--color-brand);
+    border-color: #4A9F9D;
 }
 
 .btn-primary:hover {
@@ -520,17 +520,32 @@ nav {
 }
 
 .carousel-dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: var(--transition);
+    padding: 0;
+    position: relative;
+}
+
+.carousel-dot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 10px;
     height: 10px;
     border-radius: 50%;
     border: 2px solid var(--color-white);
     background: transparent;
-    cursor: pointer;
     transition: var(--transition);
-    padding: 0;
 }
 
-.carousel-dot.active {
+.carousel-dot.active::after {
     background: var(--color-brand);
     border-color: var(--color-brand);
 }
@@ -904,7 +919,7 @@ footer {
 
 .footer-subtitle {
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.85);
 }
 
 .footer-nav {
@@ -962,7 +977,7 @@ footer {
 }
 
 .copyright p {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.8);
     font-weight: 400;
     font-size: 0.8rem;
 }
